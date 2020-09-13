@@ -14,15 +14,15 @@ class Holidays
   protected function createFinalArray () {
     $finalArray = [];
     $sortedOutArray = $this->sortOutJson();
-
-    foreach ($sortedOutArray as $parentKey => $parentValue) {
-      foreach ($parentValue as $childKey => $childValue) {
-        $replaceKey = substr_replace($childKey,'-',2,0);
-        $finalKey = '20'.(string) $parentKey.'-'.$replaceKey;
-        $finalArray[$finalKey] = $childValue;
+    if($sortedOutArray){
+      foreach ($sortedOutArray as $parentKey => $parentValue) {
+        foreach ($parentValue as $childKey => $childValue) {
+          $replaceKey = substr_replace($childKey,'-',2,0);
+          $finalKey = '20'.(string) $parentKey.'-'.$replaceKey;
+          $finalArray[$finalKey] = $childValue;
+        }
       }
     }
-
     return $finalArray;
   }
 
@@ -55,7 +55,12 @@ class Holidays
       $sortedOutArray = $arrayVanilla;
     }
 
-    return $sortedOutArray;
+    if(isset($sortedOutArray)){
+      return $sortedOutArray;
+    }else{
+      return false;
+    }
+
   }
 
   /**
@@ -85,7 +90,7 @@ class Holidays
     $json = file_get_contents(self::jsonSrc);
     $json = mb_convert_encoding($json,'UTF8','ASCII,JIS,UTF-8,EUC-JP,SJIS-WIN');
     $records = json_decode($json,true);
-    
+
     return $records;
   }
 }
