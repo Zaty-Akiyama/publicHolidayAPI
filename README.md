@@ -1,3 +1,6 @@
+# Google Calendarから祝日を取得する祝日APIを作成しました
+https://github.com/Zaty-Akiyama/holiday_api_JP
+
 # 祝日を返すAPI
 REST方式で日本の祝日をJson形式で出力するAPIを作成するPHPプログラム
 "(*)/yy/mm"から "app/holidays.php"にアクセスした後に Holidaysクラスを生成することで、YYYY-mm-ddに対応した祝日データを取得することができます。
